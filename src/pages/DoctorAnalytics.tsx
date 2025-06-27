@@ -19,7 +19,7 @@ import {
   Brain,
   Pill
 } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart as RechartsPieChart, Cell, LineChart, Line, AreaChart, Area, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart as RechartsPieChart, Cell, LineChart, Line, AreaChart, Area, ResponsiveContainer, Pie } from 'recharts';
 import DashboardLayout from '@/components/DashboardLayout';
 
 const DoctorAnalytics = () => {
@@ -86,7 +86,7 @@ const DoctorAnalytics = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-2">
-            <select 
+            <select title='Select Date Range'
               className="px-3 py-2 border border-blue-200 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={dateRange}
               onChange={(e) => setDateRange(e.target.value)}
