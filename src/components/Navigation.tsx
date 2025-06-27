@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dna, Home, Upload, Search, Settings } from 'lucide-react';
@@ -35,15 +34,16 @@ const Navigation = () => {
               <Search className="h-4 w-4" />
               <span>Results</span>
             </Link>
-            <Link to="/settings" className="flex items-center space-x-1 text-foreground/80 hover:text-foreground transition-colors">
-              <Settings className="h-4 w-4" />
-              <span>Settings</span>
-            </Link>
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Link to="/upload">
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center space-x-3">
+            <Link to="/login">
+              <Button variant="outline" className="glass">
+                Sign In
+              </Button>
+            </Link>
+            <Link to="/register">
               <Button className="dna-gradient border-0 text-white hover:scale-105 transition-transform">
                 Get Started
               </Button>
@@ -79,10 +79,14 @@ const Navigation = () => {
                 <Search className="h-4 w-4" />
                 <span>View Results</span>
               </Link>
-              <Link to="/settings" className="flex items-center space-x-2 py-2 text-foreground/80 hover:text-foreground">
-                <Settings className="h-4 w-4" />
-                <span>Settings</span>
-              </Link>
+              <div className="flex flex-col space-y-2 pt-3 border-t border-white/10">
+                <Link to="/login" className="flex items-center space-x-2 py-2 text-foreground/80 hover:text-foreground">
+                  <span>Sign In</span>
+                </Link>
+                <Link to="/register" className="flex items-center space-x-2 py-2 text-foreground/80 hover:text-foreground">
+                  <span>Get Started</span>
+                </Link>
+              </div>
             </div>
           </div>
         )}
