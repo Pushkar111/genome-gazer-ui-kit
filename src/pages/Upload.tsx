@@ -2,10 +2,10 @@
 import React, { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { FileUpload, X } from 'lucide-react';
+import { Upload, X, Search } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 
-const Upload = () => {
+const UploadPage = () => {
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -116,7 +116,7 @@ const Upload = () => {
               {uploadedFile ? (
                 <div className="space-y-4">
                   <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto">
-                    <FileUpload className="h-8 w-8 text-white" />
+                    <Upload className="h-8 w-8 text-white" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-green-600 mb-2">File Ready!</h3>
@@ -139,7 +139,7 @@ const Upload = () => {
               ) : (
                 <div className="space-y-4">
                   <div className="w-16 h-16 dna-gradient rounded-full flex items-center justify-center mx-auto animate-pulse-glow">
-                    <FileUpload className="h-8 w-8 text-white" />
+                    <Upload className="h-8 w-8 text-white" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Drop your genetic data file here</h3>
@@ -210,4 +210,4 @@ const Upload = () => {
   );
 };
 
-export default Upload;
+export default UploadPage;

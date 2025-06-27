@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Dna, FileUpload, Search } from 'lucide-react';
+import { Dna, Upload, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
@@ -33,7 +33,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
             <Link to="/upload">
               <Button size="lg" className="text-lg px-10 py-6 dna-gradient border-0 text-white hover:scale-105 transition-all duration-300 shadow-2xl">
-                <FileUpload className="mr-3 h-6 w-6" />
+                <Upload className="mr-3 h-6 w-6" />
                 Upload Your DNA Data
               </Button>
             </Link>

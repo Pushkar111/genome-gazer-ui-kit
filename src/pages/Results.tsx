@@ -6,7 +6,7 @@ import RiskGauge from '@/components/RiskGauge';
 import DNAViewer3D from '@/components/DNAViewer3D';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Dna, FileUpload } from 'lucide-react';
+import { Dna, Upload } from 'lucide-react';
 
 const Results = () => {
   const riskData = [

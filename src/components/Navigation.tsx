@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Dna, Home, FileUpload, Search, Settings } from 'lucide-react';
+import { Dna, Home, Upload, Search, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navigation = () => {
@@ -28,7 +28,7 @@ const Navigation = () => {
               <span>Home</span>
             </Link>
             <Link to="/upload" className="flex items-center space-x-1 text-foreground/80 hover:text-foreground transition-colors">
-              <FileUpload className="h-4 w-4" />
+              <Upload className="h-4 w-4" />
               <span>Upload</span>
             </Link>
             <Link to="/results" className="flex items-center space-x-1 text-foreground/80 hover:text-foreground transition-colors">
@@ -72,7 +72,7 @@ const Navigation = () => {
                 <span>Home</span>
               </Link>
               <Link to="/upload" className="flex items-center space-x-2 py-2 text-foreground/80 hover:text-foreground">
-                <FileUpload className="h-4 w-4" />
+                <Upload className="h-4 w-4" />
                 <span>Upload DNA</span>
               </Link>
               <Link to="/results" className="flex items-center space-x-2 py-2 text-foreground/80 hover:text-foreground">
