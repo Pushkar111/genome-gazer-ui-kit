@@ -1,14 +1,36 @@
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Upload, X, Search } from 'lucide-react';
-import Navigation from '@/components/Navigation';
+import { Upload, X, Search, ArrowLeft } from 'lucide-react';
+import { useAuthStore } from '@/store/authStore';
+import { useNavigate, Link } from 'react-router-dom';
+import DashboardLayout from '@/components/DashboardLayout';
 
 const UploadPage = () => {
   const [isDragOver, setIsDragOver] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [analysisStep, setAnalysisStep] = useState(0);
+  const { isAuthenticated, user } = useAuthStore();
+  const navigate = useNavigate();
+
+  const analysisSteps = [
+    'Uploading genetic data...',
+    'Validating file format...',
+    'Processing SNP variants...',
+    'Running ML algorithms...',
+    'Calculating disease risks...',
+    'Analyzing drug responses...',
+    'Generating personalized report...',
+    'Analysis complete!'
+  ];
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -43,39 +65,75 @@ const UploadPage = () => {
     if (!uploadedFile) return;
     
     setIsUploading(true);
-    // Simulate upload and analysis
-    setTimeout(() => {
-      setIsUploading(false);
-      // Redirect to results page
-      window.location.href = '/results';
-    }, 3000);
+    setAnalysisStep(0);
+
+    // Simulate analysis process
+    for (let i = 0; i < analysisSteps.length; i++) {
+      setAnalysisStep(i);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+
+    // Redirect to results page
+    const redirectPath = user?.role === 'patient' ? '/user/results' : '/results';
+    navigate(redirectPath);
   };
 
   const removeFile = () => {
     setUploadedFile(null);
   };
 
-  return (
-    <div className="min-h-screen">
-      <Navigation />
-      
-      <div className="pt-24 pb-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Upload Your{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Genetic Data
-              </span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Upload your 23andMe, AncestryDNA, or VCF file to get started with personalized genomic analysis.
-            </p>
-          </div>
+  if (!isAuthenticated) {
+    return null; // Will redirect via useEffect
+  }
 
+  const content = (
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">Upload Genetic Data</h1>
+          <p className="text-muted-foreground">
+            Upload your 23andMe, AncestryDNA, or VCF file for personalized genomic analysis
+          </p>
+        </div>
+        {user?.role === 'patient' && (
+          <Link to="/user/dashboard">
+            <Button variant="outline" className="flex items-center gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Dashboard
+            </Button>
+          </Link>
+        )}
+      </div>
+
+      {/* Analysis Progress */}
+      {isUploading && (
+        <Card className="glass p-8">
+          <div className="text-center space-y-6">
+            <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto animate-pulse">
+              <Search className="h-10 w-10 text-white" />
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Analyzing Your DNA</h3>
+              <p className="text-muted-foreground mb-4">{analysisSteps[analysisStep]}</p>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div 
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-1000"
+                  style={{ width: `${((analysisStep + 1) / analysisSteps.length) * 100}%` }}
+                />
+              </div>
+              <p className="text-sm text-muted-foreground mt-2">
+                Step {analysisStep + 1} of {analysisSteps.length}
+              </p>
+            </div>
+          </div>
+        </Card>
+      )}
+
+      {!isUploading && (
+        <>
           {/* Supported Formats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card className="glass p-6 text-center hover:scale-105 transition-transform">
               <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold">23</span>
@@ -102,7 +160,7 @@ const UploadPage = () => {
           </div>
 
           {/* Upload Area */}
-          <Card className="glass p-8 mb-8">
+          <Card className="glass p-8">
             <div
               className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 ${
                 isDragOver 
@@ -168,20 +226,10 @@ const UploadPage = () => {
                 <Button
                   size="lg"
                   onClick={handleAnalyze}
-                  disabled={isUploading}
                   className="px-12 py-6 text-lg dna-gradient border-0 text-white hover:scale-105 transition-transform"
                 >
-                  {isUploading ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                      Analyzing Your DNA...
-                    </>
-                  ) : (
-                    <>
-                      <Search className="mr-3 h-5 w-5" />
-                      Start Analysis
-                    </>
-                  )}
+                  <Search className="mr-3 h-5 w-5" />
+                  Start Analysis
                 </Button>
               </div>
             )}
@@ -204,7 +252,21 @@ const UploadPage = () => {
               </div>
             </div>
           </Card>
-        </div>
+        </>
+      )}
+    </div>
+  );
+
+  // If user is authenticated, show content within dashboard layout for patients
+  if (user?.role === 'patient') {
+    return <DashboardLayout>{content}</DashboardLayout>;
+  }
+
+  // For non-patient users or public access, show standalone layout
+  return (
+    <div className="min-h-screen pt-8 pb-12 px-4">
+      <div className="max-w-4xl mx-auto">
+        {content}
       </div>
     </div>
   );

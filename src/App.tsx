@@ -11,6 +11,11 @@ import Upload from "./pages/Upload";
 import Results from "./pages/Results";
 import DoctorDashboard from "./pages/DoctorDashboard";
 import UserDashboard from "./pages/UserDashboard";
+import UserResults from "./pages/UserResults";
+import User3DDNA from "./pages/User3DDNA";
+import UserChat from "./pages/UserChat";
+import DoctorPatientDetail from "./pages/DoctorPatientDetail";
+import DoctorVariantExplorer from "./pages/DoctorVariantExplorer";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -36,6 +41,31 @@ const App = () => (
               <DoctorDashboard />
             </ProtectedRoute>
           } />
+          <Route path="/doctor/patient/:id" element={
+            <ProtectedRoute requiredRole="doctor">
+              <DoctorPatientDetail />
+            </ProtectedRoute>
+          } />
+          <Route path="/doctor/variant-explorer" element={
+            <ProtectedRoute requiredRole="doctor">
+              <DoctorVariantExplorer />
+            </ProtectedRoute>
+          } />
+          <Route path="/doctor/patients" element={
+            <ProtectedRoute requiredRole="doctor">
+              <DoctorDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/doctor/upload" element={
+            <ProtectedRoute requiredRole="doctor">
+              <Upload />
+            </ProtectedRoute>
+          } />
+          <Route path="/doctor/analytics" element={
+            <ProtectedRoute requiredRole="doctor">
+              <DoctorDashboard />
+            </ProtectedRoute>
+          } />
           
           {/* Patient Routes */}
           <Route path="/user/dashboard" element={
@@ -50,7 +80,17 @@ const App = () => (
           } />
           <Route path="/user/results" element={
             <ProtectedRoute requiredRole="patient">
-              <Results />
+              <UserResults />
+            </ProtectedRoute>
+          } />
+          <Route path="/user/3d-dna" element={
+            <ProtectedRoute requiredRole="patient">
+              <User3DDNA />
+            </ProtectedRoute>
+          } />
+          <Route path="/user/chat" element={
+            <ProtectedRoute requiredRole="patient">
+              <UserChat />
             </ProtectedRoute>
           } />
           
