@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import Upload from "./pages/Upload";
 import Results from "./pages/Results";
 import DoctorDashboard from "./pages/DoctorDashboard";
+import DoctorAnalytics from "./pages/DoctorAnalytics";
 import UserDashboard from "./pages/UserDashboard";
 import UserResults from "./pages/UserResults";
 import User3DDNA from "./pages/User3DDNA";
@@ -51,11 +52,6 @@ const App = () => (
               <DoctorVariantExplorer />
             </ProtectedRoute>
           } />
-          <Route path="/doctor/patients" element={
-            <ProtectedRoute requiredRole="doctor">
-              <DoctorDashboard />
-            </ProtectedRoute>
-          } />
           <Route path="/doctor/upload" element={
             <ProtectedRoute requiredRole="doctor">
               <Upload />
@@ -63,7 +59,7 @@ const App = () => (
           } />
           <Route path="/doctor/analytics" element={
             <ProtectedRoute requiredRole="doctor">
-              <DoctorDashboard />
+              <DoctorAnalytics />
             </ProtectedRoute>
           } />
           

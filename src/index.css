@@ -3,78 +3,79 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Enhanced design system for genomic platform */
+/* Enhanced design system for healthcare platform */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 210 24% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 24% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 24% 16%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 200 98% 39%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 200 20% 94%;
+    --secondary-foreground: 200 30% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 200 20% 96%;
+    --muted-foreground: 200 12% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 200 20% 94%;
+    --accent-foreground: 200 30% 25%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 200 20% 90%;
+    --input: 200 20% 90%;
+    --ring: 200 98% 39%;
 
     --radius: 0.5rem;
 
-    /* Genomic color palette */
-    --dna-blue: 220 100% 85%;
-    --dna-purple: 280 100% 85%;
-    --dna-green: 140 60% 75%;
-    --dna-pink: 320 80% 85%;
-    --risk-high: 0 70% 60%;
-    --risk-medium: 35 90% 65%;
-    --risk-low: 120 50% 60%;
+    /* Healthcare color palette */
+    --medical-blue: 200 98% 39%;
+    --medical-teal: 180 84% 45%;
+    --medical-green: 145 65% 45%;
+    --hospital-gray: 200 15% 92%;
+    --clinical-white: 0 0% 98%;
+    --emergency-red: 0 84% 60%;
+    --warning-orange: 35 84% 62%;
+    --success-green: 142 72% 29%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 210 30% 8%;
+    --foreground: 0 0% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 210 30% 10%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 210 30% 10%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 200 98% 39%;
+    --primary-foreground: 210 30% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 30% 15%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 210 30% 15%;
+    --muted-foreground: 200 15% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 210 30% 15%;
+    --accent-foreground: 0 0% 95%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 210 30% 18%;
+    --input: 210 30% 18%;
+    --ring: 200 98% 39%;
   }
 }
 
@@ -84,60 +85,103 @@
   }
 
   body {
-    @apply bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 text-foreground;
+    @apply bg-gradient-to-br from-blue-50 via-teal-50/30 to-white text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   .dark body {
-    @apply bg-gradient-to-br from-slate-900 via-blue-900/20 to-purple-900/20;
+    @apply bg-gradient-to-br from-slate-900 via-blue-900/20 to-slate-800;
   }
 }
 
-/* Custom glassmorphism utilities */
+/* Custom healthcare utilities */
 @layer utilities {
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-xl;
+    @apply bg-white/80 backdrop-blur-xl border border-blue-100/50 shadow-lg;
   }
   
   .glass-dark {
-    @apply bg-slate-800/70 backdrop-blur-xl border border-slate-700/30 shadow-xl;
+    @apply bg-slate-800/80 backdrop-blur-xl border border-slate-700/30 shadow-lg;
   }
 
-  .dna-gradient {
+  .medical-gradient {
     background: linear-gradient(135deg, 
-      hsl(var(--dna-blue)) 0%, 
-      hsl(var(--dna-purple)) 50%, 
-      hsl(var(--dna-pink)) 100%);
+      hsl(var(--medical-blue)) 0%, 
+      hsl(var(--medical-teal)) 50%, 
+      hsl(var(--medical-green)) 100%);
   }
 
+  .hospital-card {
+    @apply bg-white/90 backdrop-blur-sm border border-blue-100 shadow-md rounded-xl;
+  }
+
+  .risk-critical {
+    @apply bg-red-50 text-red-800 border-red-200;
+  }
+  
   .risk-high {
-    @apply bg-red-100 text-red-800 border-red-200;
+    @apply bg-orange-50 text-orange-800 border-orange-200;
   }
   
   .risk-medium {
-    @apply bg-orange-100 text-orange-800 border-orange-200;
+    @apply bg-yellow-50 text-yellow-800 border-yellow-200;
   }
   
   .risk-low {
-    @apply bg-green-100 text-green-800 border-green-200;
+    @apply bg-green-50 text-green-800 border-green-200;
+  }
+
+  .btn-medical {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .input-medical {
+    @apply border-blue-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-lg;
   }
 }
 
-/* Custom animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+/* Healthcare-specific animations */
+@keyframes pulse-medical {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+    transform: scale(1.02);
+  }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-  50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.05); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.03); }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+.animate-pulse-medical {
+  animation: pulse-medical 3s ease-in-out infinite;
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+.animate-heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+/* Responsive utilities */
+@layer utilities {
+  .container-responsive {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .grid-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+  }
+  
+  .text-responsive {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+  
+  .spacing-responsive {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
 }
