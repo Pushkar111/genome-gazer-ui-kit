@@ -1,8 +1,9 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+/* Enhanced design system for genomic platform */
 
 @layer base {
   :root {
@@ -36,21 +37,14 @@
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Genomic color palette */
+    --dna-blue: 220 100% 85%;
+    --dna-purple: 280 100% 85%;
+    --dna-green: 140 60% 75%;
+    --dna-pink: 320 80% 85%;
+    --risk-high: 0 70% 60%;
+    --risk-medium: 35 90% 65%;
+    --risk-low: 120 50% 60%;
   }
 
   .dark {
@@ -81,14 +75,6 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -98,6 +84,60 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
+
+  .dark body {
+    @apply bg-gradient-to-br from-slate-900 via-blue-900/20 to-purple-900/20;
+  }
+}
+
+/* Custom glassmorphism utilities */
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-xl;
+  }
+  
+  .glass-dark {
+    @apply bg-slate-800/70 backdrop-blur-xl border border-slate-700/30 shadow-xl;
+  }
+
+  .dna-gradient {
+    background: linear-gradient(135deg, 
+      hsl(var(--dna-blue)) 0%, 
+      hsl(var(--dna-purple)) 50%, 
+      hsl(var(--dna-pink)) 100%);
+  }
+
+  .risk-high {
+    @apply bg-red-100 text-red-800 border-red-200;
+  }
+  
+  .risk-medium {
+    @apply bg-orange-100 text-orange-800 border-orange-200;
+  }
+  
+  .risk-low {
+    @apply bg-green-100 text-green-800 border-green-200;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
 }
