@@ -52,7 +52,7 @@ const Index = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.6 }
     }
   };
 
@@ -126,7 +126,7 @@ const Index = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1 }}
             className="max-w-4xl mx-auto"
           >
             <Card className="hospital-card p-8">
